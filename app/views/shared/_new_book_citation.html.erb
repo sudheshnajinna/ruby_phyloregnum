@@ -1,0 +1,127 @@
+<div class="sized-content" style="min-width:550px;min-height:400px">
+<input type="hidden" name="citation_for" id="new_citation_for"/>
+<input type="hidden" id="phylogeny_table_citation_id" value="new" />
+
+<form id="new-citation-form-entry" action="#">
+  <table>
+    <tr>
+      <td colspan="4">Type:</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <select id="new_citation_type" name="citation_type">
+          <option value="book" selected>Book</option>
+          <option value="journal">Journal</option>
+          <option value="book_section">Book Section</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">Author(s):</td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <div id="citation-author-container">
+          <%= render 'shared/add_author', { author_type: 'author' } %>
+        </div>
+      </td>
+    </tr>
+    <tr class="book_inputs">
+      <td colspan="2" >Title:</td> <td colspan="2" >Publisher:</td>
+    </tr>
+    <tr class="book_inputs">
+      <td colspan="2"><input data-bind="value: title"  class="book_inputs" type="text" size="25" id="new_title" name="title"/></td>
+      <td colspan="2" ><input data-bind="value: publisher"  class="book_inputs" type="text" size="25" id="new_publisher" name="publisher"/>&nbsp;&nbsp;  </td>
+    </tr>
+
+    <tr class="book_inputs">
+      <td colspan="2">Book Editors:</td>
+    </tr>
+    <tr class="book_inputs">
+      <td colspan="5">
+        <div id="citation-editor-container">
+          <%= render 'shared/add_author', { author_type: 'editor' } %>
+        </div>
+      </td>
+
+    </tr>
+    <tr>
+          <td class="primary_only">Figure #:</td><td>Year:</td><td class="book_inputs">Edition:</td><td class="book_inputs">City:</td><td class="other_inputs">Volume:</td>
+    </tr>
+    <tr>
+      <td class="primary_only" >
+        <input data-bind="value: figure"  type="text" size="3" id="new_figure" name="figure"/>&nbsp;&nbsp;
+      </td>
+      <td>
+        <input data-bind="value: year"  type="text" size="10" id="new_year" name="year" />&nbsp;&nbsp;
+      </td>
+      <td class="book_inputs">
+        <input data-bind="value: edition"  class="book_inputs" type="text" size="10" id="new_edition" name="edition"/>&nbsp;&nbsp;
+      </td>
+
+      <td class="book_inputs">
+        <input data-bind="value: city"  class="book_inputs" type="text" size="10" id="new_city" name="city"/>&nbsp;&nbsp;
+      </td>
+      <td class="other_inputs">
+        <input data-bind="value: volume"  class="other_inputs" type="text" size="10" id="new_volume" name="volume"/>&nbsp;&nbsp;
+      </td>
+
+    </tr>
+    <tr>
+      <td>Pages:</td>
+      <td>Keywords: <span class="required">(Optional)</span></td>
+      <td>Abstract: <span class="required">(Optional)</span></td>
+      <td>ISBN/ISSN: <span class="required">(Optional)</span></td>
+    </tr>
+    <tr>
+      <td>
+        <input data-bind="value: pages"  type="text" size="10" id="new_pages" name="pages"/>&nbsp;&nbsp;
+      </td>
+      <td>
+        <input data-bind="value: keywords"  type="text" size="10" id="new_keywords" name="keywords"/>&nbsp;&nbsp;
+      </td>
+      <td>
+        <input data-bind="value: abstract"  type="text" size="10" id="new_abstract" name="abstract"/>&nbsp;&nbsp;
+      </td>
+      <td>
+        <input data-bind="value: isbn"  type="text" size="10" id="new_isbn" name="isbn"/>&nbsp;&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">URL: <span class="required">(Optional)</span></td><td>DOI: <span class="required">(Optional)</span></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input data-bind="value: url"  type="text" size="25" id="new_url" name="url"/>&nbsp;&nbsp;
+      </td>
+      <td colspan="2">
+        <input data-bind="value: doi"  type="text" size="25" id="new_doi" name="doi"/>&nbsp;&nbsp;
+      </td>
+    </tr>
+
+    <tr class="treebase-outlink primary_only">
+       <td colspan="2"><img class="outlink" id="treebase_tree_outlink_img" src="/images/treebase.gif" title="Search TreeBase" />&nbsp;<span id="treebase_tree_id_link">TreeBase Tree ID:</span></td>
+     </tr>
+    <tr class="treebase-outlink primary_only">
+      <td colspan="2" class="phylogeny-citation">
+        <input data-bind="value: treebase_tree_id"  class="phlyogeny-citation" type="text" size="25" id="new_treebase_tree_id" name="treebase_tree_id"/>&nbsp;&nbsp;
+      </td>
+    </tr>
+
+  </table>
+</form>
+<table style="font-weight:bold;">
+  <tr>
+    <td colspan="2">Attachment:</td>
+  </tr>
+  <tr>
+    <td colspan="2" id="citation-attachment-cell" style="width:300px;">
+      <form id="remote-attachment-form"  enctype="multipart/form-data" action="/my_submission/add_attachment" method="post">
+        <input type="file" id="new_remote_attachment" name="file" />
+      </form>
+    </td>
+    
+  </tr>
+</table>
+</div>

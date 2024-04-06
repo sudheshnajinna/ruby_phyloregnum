@@ -1,0 +1,6 @@
+<% Submission::CladeTypes.each do |clade_type| %>
+  <option value="<%= clade_type[:key] %>"><%= clade_type[:name] %>  <% if clade_type[:key] == Submission::MinimumCladeDirectlySpecifiedAncestor[:key] %>
+      <span class="required">(rare)</span>
+    <% end %>
+  </option>
+<% end %>

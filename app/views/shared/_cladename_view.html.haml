@@ -1,0 +1,127 @@
+#submission_content.section.sized-content{ :style => 'margin:auto auto;width:750px;min-height:500px;'}
+  #clade-name= @sub.name
+  %ul#view-tabs
+    %li#name-tab.section-tab{:style => 'border-bottom:1px solid #FFFAE1;'} Clade Name
+    %li#type-tab.section-tab{:style => 'background-color:#ffe8ac;'} Definition Type & Specifiers
+    %li#definition-tab.section-tab{:style => 'background-color:#ffe8ac;'} Definition
+  #name-tab-div.section.section-tab-div{}
+    %table.clade-name-table
+      %tr
+        %td.name
+          %p Registration Number:
+        %td.name
+          %p RegNum UUID:
+      %tr
+        %td= @sub.temp_id
+        %td= @sub.guid
+      %tr
+        %td.name
+          %p Name String:
+      %tr  
+        %td{colspan: "2"}= name_string_formatted
+      %tr
+        %td.name
+          %p Author(s):
+      %tr  
+        %td= display_authors @sub.authors
+      -#if (!logged_in? || (current_user.is_editor? || current_user.is_admin?))
+        %tr
+          %td.name
+            %p Establish under PhyloCode:
+        %tr  
+          %td= @sub.establish ? 'yes' : 'no'
+      = render :partial => 'shared/submission_citation', locals: {citation: @sub.citations['definitional'], citation_type: "Definitional"}
+      %tr
+        %td.name
+          %p Pre-existing name:
+      %tr  
+        %td= @sub.preexisting ? 'yes' : 'no'
+      -if @sub.preexisting == true
+        %tr
+          %td.name
+            %p Pre-existing Code:
+        %tr  
+          %td= @sub.preexisting_code
+        %tr
+          %td.name
+            %p Pre-existing Author(s):
+        %tr  
+          %td= display_authors @sub.citations['preexisting']['authors']
+        = render :partial => 'shared/submission_citation', locals: {citation: @sub.citations['preexisting'], citation_type: "Pre-existing"}
+      %tr
+        %td.name
+          %p Comments:
+      %tr
+        %td{:style => 'text-align:justify'}
+          - if @sub.comments.nil? || @sub.comments.strip.empty?
+            %i No comments
+          - else
+            = @sub.comments
+  #type-tab-div.section.section-tab-div{:style => 'display:none;'}
+    %table
+      %tr
+        %td.name
+          %p Definition Type:
+      %tr
+        %td= @sub.clade_type_name
+      %tr
+        %td.name
+          %p Specifiers:
+      %tr
+        %td
+          .accordion
+            -@sub.specifiers.each do |specifier|
+              -specifier = attachment_prepare(specifier)
+              -if !specifier.nil? && specifier.has_key?('specifier_name')
+                %h3
+                  &nbsp;
+                  %em= specifier['specifier_name']
+                  = ' : '
+                  = (specifier['kind'] || specifier['specifier_kind'])
+                %div
+                  %table               
+                    %tr
+                      %td
+                        %span
+                          %span{:style => 'font-weight:bold;'}= 'Specifier type: '
+                          = format_output('specifier_type',specifier.delete('specifier_type'))
+                    %tr
+                      %td
+                        %span
+                          %span{:style => 'font-weight:bold;'}= 'Specifier kind: '
+                          = format_output('specifier_kind',specifier.delete('specifier_kind'))
+                    -specifier.each do |k,v|
+                      -if !v.blank?
+                        %tr
+                          %td
+                            %span
+                              %span{:style => 'font-weight:bold;'}= k.humanize + ': '
+                            = format_output(k,v)
+                     
+  #definition-tab-div.section.section-tab-div{:style => 'display:none'}
+    - #%h2 Abbreviated Definition
+    - #%p= abbreviation_formatted
+    %h2 Verbatim Definition
+    %p= verbatim_definition
+    -if @sub.citations.has_key?('primary_phylogeny')
+      %h2.name Primary Reference Phylogeny:
+      -if @sub.citations['primary_phylogeny'].is_a?  Hash
+        .accordion
+          %h3{title: output_citation(@sub.citations['primary_phylogeny'])}= citation_title(@sub.citations['primary_phylogeny'])
+          .primary_phylogeny
+            %p.citation= output_citation(@sub.citations['primary_phylogeny'])
+    -if @sub.citations['phylogeny'].is_a? Hash
+      %h2.name Additional Reference Phylogeny:
+      .accordion
+        %h3{title: output_citation(@sub.citations['phylogeny'])}= citation_title(@sub.citations['phylogeny'])
+        .additional_reference
+          %p.citation= output_citation(@sub.citations['phylogeny'])
+    -if @sub.citations['phylogeny'].is_a? Array
+      %h2.name Additional Reference Phylogenies:
+      - @sub.citations['phylogeny'].each do |phy|
+        .accordion
+          %h3{title: output_citation(phy)}= citation_title(phy)
+          .additional_reference
+            %p.citation= output_citation(phy)
+
+

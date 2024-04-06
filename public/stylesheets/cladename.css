@@ -1,0 +1,111 @@
+#type-tab-div>table, #name-tab-div table, #definition-tab-div table{
+  margin:5px;
+  width:98%;
+
+}
+.section-tab{
+   padding-bottom:1px;
+}
+.section-tab:hover{
+	cursor:pointer;
+}
+.ui-accordion-header{
+	padding-left:20px;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	overflow:hidden;
+	max-width:700px;
+}
+.ui-accordion-content{
+	border:1px solid #ccc;
+	max-width:700px;
+	padding: 10px;
+	margin:0px;
+}
+#submission_content #view-tabs{}
+
+#clade-name{
+	min-width:97%;
+	text-align:center;
+	font-weight:bold;
+	font-size:16px;
+	background-color:#fff;
+	padding:10px;
+	border-radius:3px;
+	border:1px solid #999;
+}
+.status-change-div .ui-accordion-header{
+	background-color:#BDEEFF;
+}
+
+#definition_type_definitions{
+	min-height: 40px;
+}
+
+#definition_type_definitions>p{
+	font-style: italic;
+}
+
+#new-preexisting-box p{
+	margin-top: 0;
+}
+
+#new-preexisting-reference-add{
+	float: right;
+	margin-right: 1rem;
+}
+
+/*******************
+Add author partial
+******************/
+
+.add-author-container{
+	margin-left: 1rem;
+}
+
+.add-author-container .author{
+	margin-bottom: 0.5rem;
+}
+
+.add-author-container .author label,
+.add-author-container .author .author-controls a,
+.add-author-container .author .author-controls .author-valid-message
+{
+	font-weight: normal;
+	font-size: 85%;
+}
+
+.add-author-container .author label input{
+	width: 100px;
+}
+
+.add-author-container .author .author-controls{
+	margin-left: 0.5rem;
+}
+
+.add-author-container .author .author-controls .author-validation-message{
+	display: block;
+	font-style: italic;
+	color: darkred;
+}
+
+.add-author-container .author .author-controls a{
+	margin-left: 0.5rem;
+	color: rgb(0, 102, 204);
+}
+
+.add-author-container .author:not(:last-of-type) .author-controls a.add-another-author{
+	display: none;
+}
+
+.add-author-container .author:first-of-type .author-controls a.remove-author{
+	/*display: none;*/
+}
+
+.table-controls{
+	margin-top: 0.5rem;
+}
+
+.table-controls button{
+	margin-left: 5rem;
+}

@@ -1,0 +1,5 @@
+.content_box{:style => 'margin:20px auto; max-width:390px;'}
+  %form#search-form{:action => '/my_submission', :method => :get, :style => 'display: inline-block;'}
+    = render :partial => 'shared/submissions_search_inputs'
+.sortable-table-holder
+  = render :partial => 'my_submission/my_submissions_table'

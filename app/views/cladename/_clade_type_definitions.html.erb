@@ -1,0 +1,5 @@
+<div id="definition_type_definitions" class="help-block" style="">
+  <% Submission::CladeTypes.each do |clade_type| %>
+    <p id="<%= clade_type[:key] %>_def" data-bind="if: clade_type() == '<%= clade_type[:key] %>'"><%= clade_type[:description] %></p>
+  <% end %>
+</div>

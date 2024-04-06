@@ -1,0 +1,18 @@
+<div id="tab3-div" style="display:none;margin-left:5px;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-sm-12" id="specifiers-table-holder">
+        <!-- ko if: pr.isCrown() -->
+          <%= render 'cladename/specifiers_crown' %>
+        <!-- /ko -->
+        <!-- ko if: pr.isApomorphy() -->
+          <%= render 'cladename/specifiers_apomorphy' %>
+        <!-- /ko -->
+        <!-- ko ifnot: pr.isApomorphy() -->
+          <%= render 'cladename/specifiers_species_and_specimen' %>
+        <!-- /ko -->
+      </div>
+    </div>
+  </div>
+</div><!-- end tab3-div -->
+
